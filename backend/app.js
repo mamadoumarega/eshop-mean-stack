@@ -23,16 +23,17 @@ app.use((req, res, next) => {
 });
 
 const api = process.env.API_URL;
-const productsRouter = require('./routers/products');
-const categoriesRouter = require('./routers/categories');
-const usersRouter = require('./routers/users');
-const ordersRouter = require('./routers/orders');
+const productsRouter = require('./routes/products');
+const categoriesRouter = require('./routes/categories');
+const usersRouter = require('./routes/users');
+const ordersRouter = require('./routes/orders');
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extend: false }));
 app.use(morgan('tiny'));
 app.use(authJwt());
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 app.use(errorHandler);
 
 // Routers
